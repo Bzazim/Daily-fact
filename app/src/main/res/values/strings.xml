@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">עובדה ביום</string>
+    <string name="did_you_know">💡 הידעת?</string>
+    <string name="fact_count">%1$d עובדות, אחת חדשה בכל בוקר</string>
+    <string name="next_fact">עובדה אחרת עכשיו</string>
+    <string name="switch_wallpaper">להציג על רקע מסך הנעילה</string>
+    <string name="switch_notify">התראה יומית שקטה</string>
+    <string name="explain">כשהאפשרות הראשונה פעילה, האפליקציה מחליפה כל בוקר רק את הרקע של מסך הנעילה. הרקע של מסך הבית לא משתנה, וכיבוי מחזיר את מסך הנעילה לרקע הרגיל.\n\nבחלק מהמכשירים (למשל שיאומי) המערכת מנהלת את רקע מסך הנעילה בעצמה. אם הרקע לא מתחלף אצלך, אפשר להשתמש בהתראה היומית במקום.</string>
+    <string name="wallpaper_set">מסך הנעילה עודכן</string>
+    <string name="wallpaper_cleared">מסך הנעילה חזר לרקע הרגיל</string>
+    <string name="wallpaper_failed">לא הצלחתי לעדכן את רקע מסך הנעילה</string>
+    <string name="notify_denied">בלי הרשאת התראות אי אפשר להציג את העובדה כהתראה</string>
+    <string name="channel_name">עובדה יומית</string>
+    <string name="channel_description">עובדה מעניינת אחת בכל בוקר</string>
+</resources>
