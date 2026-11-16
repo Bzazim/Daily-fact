@@ -10,7 +10,6 @@ import android.graphics.LinearGradient
 import android.graphics.Paint
 import android.graphics.RectF
 import android.graphics.Shader
-import android.graphics.Typeface
 import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextDirectionHeuristics
@@ -21,8 +20,8 @@ import kotlin.math.min
 /** מצייר תמונת רקע עם העובדה ושם אותה רק במסך הנעילה (רקע מסך הבית לא משתנה). */
 object WallpaperMaker {
 
-    fun setLockScreen(context: Context, fact: String) {
-        val bitmap = render(fact)
+    fun setLockScreen(context: Context, fact: Fact, textSize: Int = 15) {
+        val bitmap = render(context, fact.text, textSize)
         WallpaperManager.getInstance(context)
             .setBitmap(bitmap, null, true, WallpaperManager.FLAG_LOCK)
         bitmap.recycle()
@@ -33,7 +32,7 @@ object WallpaperMaker {
         WallpaperManager.getInstance(context).clear(WallpaperManager.FLAG_LOCK)
     }
 
-    fun render(fact: String): Bitmap {
+    fun render(context: Context, fact: String, textSize: Int = 15): Bitmap {
         val dm = Resources.getSystem().displayMetrics
         val w = min(dm.widthPixels, dm.heightPixels).coerceAtLeast(720)
         val h = max(dm.widthPixels, dm.heightPixels).coerceAtLeast(1280)
@@ -58,15 +57,15 @@ object WallpaperMaker {
         val titlePaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
             color = 0xFF8FD3E8.toInt()
             textSize = w * 0.042f
-            typeface = Typeface.DEFAULT_BOLD
+            typeface = Fonts.ui(context, 700)
         }
         val bodyPaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
             color = Color.WHITE
-            typeface = Typeface.DEFAULT
+            typeface = Fonts.read(context)
         }
 
         // מקטינים את הגופן עד שהטקסט נכנס
-        var size = w * 0.058f
+        var size = w * 0.058f * textSize / 15f
         var body: StaticLayout
         do {
             bodyPaint.textSize = size
@@ -74,7 +73,9 @@ object WallpaperMaker {
             size *= 0.92f
         } while (body.height > h * 0.30f && size > w * 0.03f)
 
-        val title = layout("💡 הידעת?", titlePaint, textWidth)
+        val title = layout(context.getString(R.string.did_you_know), titlePaint, textWidth)
+        val iconSize = (titlePaint.textSize * 1.15f).toInt()
+        val iconGap = titlePaint.textSize * 0.4f
         val gap = w * 0.03f
         val cardH = padding * 2 + title.height + gap + body.height
 
@@ -93,7 +94,17 @@ object WallpaperMaker {
 
         canvas.save()
         canvas.translate(margin + padding, cardTop + padding)
+        // נורה מימין לכותרת (בעברית הכותרת מתחילה מימין)
+        context.getDrawable(R.drawable.ic_bulb)?.let { icon ->
+            icon.setTint(titlePaint.color)
+            val top = (title.getLineBottom(0) - iconSize) / 2
+            icon.setBounds(textWidth - iconSize, top, textWidth, top + iconSize)
+            icon.draw(canvas)
+        }
+        canvas.save()
+        canvas.translate(-(iconSize + iconGap), 0f)
         title.draw(canvas)
+        canvas.restore()
         canvas.translate(0f, title.height + gap)
         body.draw(canvas)
         canvas.restore()

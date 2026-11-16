@@ -19,7 +19,7 @@ object Notifier {
         Build.VERSION.SDK_INT < 33 ||
             context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
 
-    fun show(context: Context, fact: String) {
+    fun show(context: Context, fact: Fact) {
         if (!canNotify(context)) return
         val nm = context.getSystemService(NotificationManager::class.java)
 
@@ -42,8 +42,9 @@ object Notifier {
         val notification = Notification.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_stat_fact)
             .setContentTitle(context.getString(R.string.did_you_know))
-            .setContentText(fact)
-            .setStyle(Notification.BigTextStyle().bigText(fact))
+            .setSubText(fact.category)
+            .setContentText(fact.text)
+            .setStyle(Notification.BigTextStyle().bigText(fact.text))
             .setVisibility(Notification.VISIBILITY_PUBLIC)
             .setContentIntent(open)
             .setOnlyAlertOnce(true)

@@ -1,16 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">עובדה ביום</string>
-    <string name="did_you_know">💡 הידעת?</string>
-    <string name="fact_count">%1$d עובדות, אחת חדשה בכל בוקר</string>
-    <string name="next_fact">עובדה אחרת עכשיו</string>
-    <string name="switch_wallpaper">להציג על רקע מסך הנעילה</string>
+    <string name="did_you_know">הידעת?</string>
+    <string name="next_fact">עובדה אחרת</string>
+    <string name="save_favorite">שמירה במועדפים</string>
+    <string name="share">שיתוף</string>
+    <string name="share_footer">\n\nמהאפליקציה "עובדה ביום"</string>
+    <string name="fact_number">עובדה %1$d מתוך %2$d</string>
+    <string name="streak">ימים ברצף שקראת עובדה. העובדה הבאה תגיע ב־%1$s.</string>
+    <string name="previous">ימים קודמים</string>
+    <string name="yesterday">אתמול</string>
+    <string name="two_days_ago">שלשום</string>
+    <string name="three_days_ago">לפני 3 ימים</string>
+    <string name="earlier">קודם</string>
+    <string name="no_categories">לא נבחר אף נושא. אפשר לבחור נושאים בהגדרות.</string>
+
+    <string name="tab_today">היום</string>
+    <string name="tab_favorites">מועדפים</string>
+    <string name="tab_settings">הגדרות</string>
+
+    <string name="favorites_empty">עוד לא שמרת עובדות.\nלחיצה על הלב בווידג׳ט או באפליקציה שומרת אותן כאן.</string>
+    <string name="remove">הסרה</string>
+    <string name="saved">נשמר במועדפים</string>
+    <string name="removed">הוסר מהמועדפים</string>
+
+    <string name="where_title">איפה העובדה מופיעה</string>
+    <string name="switch_wallpaper">רקע מסך הנעילה</string>
+    <string name="switch_wallpaper_hint">רקע מסך הבית לא משתנה</string>
     <string name="switch_notify">התראה יומית שקטה</string>
-    <string name="explain">כשהאפשרות הראשונה פעילה, האפליקציה מחליפה כל בוקר רק את הרקע של מסך הנעילה. הרקע של מסך הבית לא משתנה, וכיבוי מחזיר את מסך הנעילה לרקע הרגיל.\n\nבחלק מהמכשירים (למשל שיאומי) המערכת מנהלת את רקע מסך הנעילה בעצמה. אם הרקע לא מתחלף אצלך, אפשר להשתמש בהתראה היומית במקום.</string>
+    <string name="switch_notify_hint">בלי צליל ובלי רטט</string>
+    <string name="widget_row">ווידג׳ט במסך הבית</string>
+    <string name="widget_row_hint">אפשר גם בלחיצה ארוכה על מסך הבית ← ווידג׳טים</string>
+    <string name="add_widget">הוספה</string>
+    <string name="widget_add_unsupported">במכשיר הזה מוסיפים ווידג׳ט בלחיצה ארוכה על מסך הבית ← ווידג׳טים ← עובדה ביום</string>
+
+    <string name="when_title">מתי</string>
+    <string name="every">עובדה חדשה כל</string>
+    <string name="freq_day">יום</string>
+    <string name="freq_12">12 שעות</string>
+    <string name="freq_3">3 שעות</string>
+    <string name="at_hour">החל מהשעה</string>
+
+    <string name="topics_title">נושאים</string>
+    <string name="look_title">מראה הווידג׳ט</string>
+    <string name="style_dark">כהה</string>
+    <string name="style_light">בהיר</string>
+    <string name="style_glass">שקוף</string>
+    <string name="style_bulb">צהוב</string>
+    <string name="text_size">גודל טקסט</string>
+    <string name="size_small">קטן</string>
+    <string name="size_normal">רגיל</string>
+    <string name="size_large">גדול</string>
+
+    <string name="about_title">אודות ופרטיות</string>
+    <string name="about">האפליקציה לא מתחברת לאינטרנט, אין בה פרסומות והיא לא אוספת שום מידע. כל העובדות שמורות בתוכה.\n\nבחלק מהמכשירים (למשל שיאומי) המערכת מנהלת את רקע מסך הנעילה בעצמה. אם הרקע לא מתחלף אצלך, אפשר להשתמש בהתראה או בווידג׳ט.</string>
+
     <string name="wallpaper_set">מסך הנעילה עודכן</string>
     <string name="wallpaper_cleared">מסך הנעילה חזר לרקע הרגיל</string>
     <string name="wallpaper_failed">לא הצלחתי לעדכן את רקע מסך הנעילה</string>
     <string name="notify_denied">בלי הרשאת התראות אי אפשר להציג את העובדה כהתראה</string>
+    <string name="widget_updated">הווידג׳ט עודכן</string>
+
     <string name="channel_name">עובדה יומית</string>
-    <string name="channel_description">עובדה מעניינת אחת בכל בוקר</string>
+    <string name="channel_description">עובדה מעניינת חדשה לפי הזמנים שבחרת</string>
+    <string name="widget_description">עובדה מעניינת חדשה בכל יום</string>
+    <string name="sample_category">חלל</string>
+    <string name="sample_fact">יום אחד על נוגה ארוך יותר משנה שלמה על נוגה.</string>
 </resources>

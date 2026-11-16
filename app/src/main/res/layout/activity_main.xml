@@ -1,96 +1,350 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg"
-    android:fitsSystemWindows="true">
+    android:layoutDirection="rtl"
+    android:orientation="vertical">
 
+    <!-- כותרת -->
     <LinearLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layoutDirection="rtl"
-        android:orientation="vertical"
-        android:padding="24dp">
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="18dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="18dp"
+        android:paddingBottom="10dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textColor="@color/accent"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/fact_count"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/muted"
-            android:textSize="14sp" />
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_logo"
+            android:importantForAccessibility="no"
+            android:padding="8dp"
+            android:src="@drawable/ic_bulb"
+            android:tint="@color/bulb" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/card"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/did_you_know"
-                android:textColor="@color/accent"
-                android:textSize="16sp"
+                android:text="@string/app_name"
+                android:textColor="@color/text"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/fact_text"
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/muted"
+                android:textSize="12.5sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- היום -->
+        <ScrollView
+            android:id="@+id/pane_today"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:lineSpacingMultiplier="1.25"
-                android:textColor="@color/text"
-                android:textSize="20sp" />
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/card"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/fact_category"
+                            style="@style/Chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/fact_number"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFeatureSettings="tnum"
+                            android:gravity="end"
+                            android:textColor="@color/muted"
+                            android:textSize="12.5sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/fact_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:lineSpacingMultiplier="1.3"
+                        android:tag="read"
+                        android:textColor="@color/text"
+                        android:textDirection="rtl"
+                        android:textIsSelectable="true"
+                        android:textSize="19sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/button_next"
+                        android:layout_width="0dp"
+                        android:layout_height="52dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_btn_primary"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_next"
+                            android:tint="@color/bulb_text" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:tag="medium"
+                            android:text="@string/next_fact"
+                            android:textColor="@color/bulb_text"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/button_favorite"
+                        style="@style/GhostButton"
+                        android:layout_marginStart="8dp"
+                        android:contentDescription="@string/save_favorite"
+                        android:src="@drawable/ic_heart" />
+
+                    <ImageView
+                        android:id="@+id/button_share"
+                        style="@style/GhostButton"
+                        android:layout_marginStart="8dp"
+                        android:contentDescription="@string/share"
+                        android:src="@drawable/ic_share" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/bg_card2"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="14dp">
+
+                    <TextView
+                        android:id="@+id/streak_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFeatureSettings="tnum"
+                        android:textColor="@color/bulb"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/streak_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/text_soft"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/SectionTitle"
+                    android:text="@string/previous" />
+
+                <LinearLayout
+                    android:id="@+id/past_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- מועדפים -->
+        <ScrollView
+            android:id="@+id/pane_favorites"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/favorites_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+
+        <!-- הגדרות -->
+        <ScrollView
+            android:id="@+id/pane_settings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout style="@style/Group">
+                    <TextView style="@style/GroupTitle" android:text="@string/where_title" />
+
+                    <LinearLayout style="@style/SettingRow">
+                        <LinearLayout style="@style/SettingLabel">
+                            <TextView style="@style/SettingText" android:text="@string/switch_wallpaper" />
+                            <TextView style="@style/SettingHint" android:text="@string/switch_wallpaper_hint" />
+                        </LinearLayout>
+                        <Switch android:id="@+id/switch_wallpaper" style="@style/AppSwitch" android:contentDescription="@string/switch_wallpaper" />
+                    </LinearLayout>
+
+                    <View style="@style/Divider" />
+
+                    <LinearLayout style="@style/SettingRow">
+                        <LinearLayout style="@style/SettingLabel">
+                            <TextView style="@style/SettingText" android:text="@string/switch_notify" />
+                            <TextView style="@style/SettingHint" android:text="@string/switch_notify_hint" />
+                        </LinearLayout>
+                        <Switch android:id="@+id/switch_notify" style="@style/AppSwitch" android:contentDescription="@string/switch_notify" />
+                    </LinearLayout>
+
+                    <View style="@style/Divider" />
+
+                    <LinearLayout style="@style/SettingRow">
+                        <LinearLayout style="@style/SettingLabel">
+                            <TextView style="@style/SettingText" android:text="@string/widget_row" />
+                            <TextView style="@style/SettingHint" android:text="@string/widget_row_hint" />
+                        </LinearLayout>
+                        <TextView
+                            android:id="@+id/button_add_widget"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_seg_track"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:paddingStart="12dp"
+                            android:paddingTop="7dp"
+                            android:paddingEnd="12dp"
+                            android:paddingBottom="7dp"
+                            android:text="@string/add_widget"
+                            android:textColor="@color/text"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout style="@style/Group">
+                    <TextView style="@style/GroupTitle" android:text="@string/when_title" />
+                    <TextView style="@style/SettingText" android:layout_marginTop="6dp" android:text="@string/every" />
+                    <com.dailyfact.lockscreen.FlowLayout android:id="@+id/frequency_options" style="@style/Options" />
+                    <TextView style="@style/SettingText" android:text="@string/at_hour" />
+                    <com.dailyfact.lockscreen.FlowLayout android:id="@+id/hour_options" style="@style/Options" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/Group">
+                    <TextView style="@style/GroupTitle" android:text="@string/topics_title" />
+                    <com.dailyfact.lockscreen.FlowLayout android:id="@+id/category_options" style="@style/Options" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/Group">
+                    <TextView style="@style/GroupTitle" android:text="@string/look_title" />
+                    <LinearLayout
+                        android:id="@+id/style_options"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal" />
+                    <TextView style="@style/SettingText" android:layout_marginTop="12dp" android:text="@string/text_size" />
+                    <com.dailyfact.lockscreen.FlowLayout android:id="@+id/size_options" style="@style/Options" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/Group">
+                    <TextView style="@style/GroupTitle" android:text="@string/about_title" />
+                    <TextView
+                        android:id="@+id/about_text"
+                        style="@style/SettingHint"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="12dp"
+                        android:lineSpacingMultiplier="1.25"
+                        android:text="@string/about"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+
+    <!-- לשוניות -->
+    <LinearLayout
+        android:id="@+id/tabbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tab_bg"
+        android:orientation="horizontal">
+
+        <LinearLayout android:id="@+id/tab_today" style="@style/Tab">
+            <ImageView style="@style/TabIcon" android:src="@drawable/ic_today" />
+            <TextView style="@style/TabText" android:text="@string/tab_today" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/button_next"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/accent_dark"
-            android:text="@string/next_fact"
-            android:textColor="@color/text"
-            android:textSize="16sp" />
+        <LinearLayout android:id="@+id/tab_favorites" style="@style/Tab">
+            <ImageView style="@style/TabIcon" android:src="@drawable/ic_heart" />
+            <TextView style="@style/TabText" android:text="@string/tab_favorites" />
+        </LinearLayout>
 
-        <Switch
-            android:id="@+id/switch_wallpaper"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:minHeight="48dp"
-            android:text="@string/switch_wallpaper"
-            android:textColor="@color/text"
-            android:textSize="17sp" />
-
-        <Switch
-            android:id="@+id/switch_notify"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:minHeight="48dp"
-            android:text="@string/switch_notify"
-            android:textColor="@color/text"
-            android:textSize="17sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:lineSpacingMultiplier="1.2"
-            android:text="@string/explain"
-            android:textColor="@color/muted"
-            android:textSize="14sp" />
+        <LinearLayout android:id="@+id/tab_settings" style="@style/Tab">
+            <ImageView style="@style/TabIcon" android:src="@drawable/ic_settings" />
+            <TextView style="@style/TabText" android:text="@string/tab_settings" />
+        </LinearLayout>
     </LinearLayout>
-</ScrollView>
+</LinearLayout>
