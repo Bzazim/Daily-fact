@@ -20,8 +20,8 @@ import kotlin.math.min
 /** מצייר תמונת רקע עם העובדה ושם אותה רק במסך הנעילה (רקע מסך הבית לא משתנה). */
 object WallpaperMaker {
 
-    fun setLockScreen(context: Context, fact: Fact, textSize: Int = 15) {
-        val bitmap = render(context, fact.text, textSize)
+    fun setLockScreen(context: Context, fact: Fact, sizeSp: Int = 15) {
+        val bitmap = render(context, fact.text, sizeSp)
         WallpaperManager.getInstance(context)
             .setBitmap(bitmap, null, true, WallpaperManager.FLAG_LOCK)
         bitmap.recycle()
@@ -32,7 +32,7 @@ object WallpaperMaker {
         WallpaperManager.getInstance(context).clear(WallpaperManager.FLAG_LOCK)
     }
 
-    fun render(context: Context, fact: String, textSize: Int = 15): Bitmap {
+    fun render(context: Context, fact: String, sizeSp: Int = 15): Bitmap {
         val dm = Resources.getSystem().displayMetrics
         val w = min(dm.widthPixels, dm.heightPixels).coerceAtLeast(720)
         val h = max(dm.widthPixels, dm.heightPixels).coerceAtLeast(1280)
@@ -65,7 +65,7 @@ object WallpaperMaker {
         }
 
         // מקטינים את הגופן עד שהטקסט נכנס
-        var size = w * 0.058f * textSize / 15f
+        var size = w * 0.058f * sizeSp / 15f
         var body: StaticLayout
         do {
             bodyPaint.textSize = size
