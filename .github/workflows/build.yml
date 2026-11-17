@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
     steps:
@@ -46,3 +48,17 @@ jobs:
         with:
           name: daily-fact-play-aab
           path: app/build/outputs/bundle/release/app-release.aab
+
+      # קישור הורדה ישיר לטלפון, בלי להתחבר ל־GitHub:
+      # https://github.com/Bzazim/Daily-fact/releases/download/test/daily-fact.apk
+      - name: Publish test APK as a direct download
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp app/build/outputs/apk/debug/app-debug.apk daily-fact.apk
+          gh release delete test --yes --cleanup-tag || true
+          gh release create test daily-fact.apk \
+            --target "${{ github.sha }}" \
+            --title "גרסת בדיקה" \
+            --notes "הגרסה האחרונה לבדיקה, מתעדכנת אוטומטית בכל שינוי. מורידים את daily-fact.apk ומתקינים בטלפון."

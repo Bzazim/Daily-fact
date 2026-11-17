@@ -12,6 +12,10 @@
 
 הגופנים Rubik ו־Frank Ruhl Libre (רישיון SIL OFL) נמצאים ב־`app/src/main/assets/fonts`.
 
+## הורדה לבדיקה
+הגרסה האחרונה, להתקנה ישירה בטלפון:
+https://github.com/Bzazim/Daily-fact/releases/download/test/daily-fact.apk
+
 ## בנייה
 כל דחיפה ל־`main` מריצה את GitHub Actions (`.github/workflows/build.yml`), ובסוף הריצה יש שני קבצים להורדה:
 - `daily-fact-test-apk`: קובץ APK להתקנה ישירה בטלפון לבדיקה.
